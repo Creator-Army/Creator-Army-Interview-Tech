@@ -1,62 +1,48 @@
-# Creator Army full-stack engineering challenge
-
-Build the missing parts of a small content-review workflow used by a campaign
-manager at Creator Army.
+# Creator Army engineering interview
 
 ## Timebox
 
-Please spend **no more than two hours** on this challenge. We care more about
-clear decisions and a coherent slice of working software than completing every
-possible improvement.
+Spend **no more than two hours** on this exercise. Stop when the time is up, even if you have not finished everything.
 
-If you reach the time limit, stop and use the notes section below to tell us
-what you would do next.
+## The task
 
-## The scenario
+You are completing a small content-review workflow for a Creator Army campaign manager.
 
-Creators submit content for brand campaigns. A campaign manager needs to find
-submissions awaiting review, approve good work, or request changes with useful
-feedback.
+Creators submit content for brand campaigns. The campaign manager needs to filter the review queue, approve suitable content, or request changes with feedback.
 
-The starter app includes:
+The starter project already includes the UI, a local SQLite database with seeded submissions, database schemas, form parsing, and a small test suite.
 
-- A React Router application with a review queue UI
-- A local SQLite database with five seeded submissions
-- Drizzle schemas and database setup
-- Server-side form parsing and validation
-- An intentionally unfinished submission service
-- A small Vitest suite with two target behaviours marked as TODO
+Complete the missing code so a campaign manager can:
 
-## Your task
+1. Filter submissions by `pending`, `approved`, or `changes requested`.
+2. Approve a pending submission.
+3. Request changes to a pending submission and leave feedback.
+4. Refresh the page and still see the saved review decision.
 
-Complete these three behaviours:
+## Requirements
 
-1. **Filter the queue** by `pending`, `approved`, or `changes requested`.
-2. **Review a pending submission** by approving it or requesting changes.
-3. **Persist the review** so the new state remains after refreshing the page.
+Your solution must follow these rules:
 
-Business rules:
-
+- Build the solution with Next.js and TypeScript.
 - Only a `pending` submission can be reviewed.
 - Requesting changes requires non-empty feedback.
-- Every successful review must append a row to `review_events`.
-- Updating the submission and recording its event must happen atomically.
-- A rejected operation should return a useful error and leave the data intact.
+- Every successful review adds a row to `review_events`.
+- The submission update and review event are saved in one transaction.
+- A failed review returns a useful error without changing the data.
+- Tests cover the behaviour you implement.
 
-Add or complete tests for the behaviour you implement. You may change any code
-in the repository, but a large rewrite should not be necessary.
+You may change any code in the repository.
 
 ## Getting started
 
-Requirements: Node.js 22+ and pnpm 10+.
+You will need Node.js 22+ and pnpm 11+.
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-Open <http://localhost:5173>. The database is created automatically at
-`.data/interview.db`.
+Open the local URL shown in your terminal. The app creates its database at `.data/interview.db`.
 
 Useful commands:
 
@@ -67,23 +53,18 @@ pnpm build
 pnpm db:reset
 ```
 
-## What is out of scope
+Look for `TODO(candidate)` comments and skipped tests as starting points. You are free to take a different approach if you prefer.
 
-Do not add authentication, file uploads, deployment, external APIs, real-time
-updates, or a production migration system. Visual polish beyond making your
-new states clear and usable is optional.
+## Out of scope
 
-## Submission notes
+Do not add authentication, file uploads, deployment, external APIs, real-time updates, or a production migration system.
+Visual changes are optional unless they are needed to make success, failure, or submission status clear.
 
-Include a short note with your submission covering:
+## What to submit
+
+Submit your completed project with a short note covering:
 
 - What you completed
 - Important decisions or trade-offs
 - What you would improve with more time
 - Any assumptions you made
-
-## What we evaluate
-
-We look at correctness, end-to-end reasoning, code clarity, database safety,
-testing choices, and how clearly the interface communicates success or failure.
-We do not reward working past the two-hour timebox.
