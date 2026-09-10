@@ -1,9 +1,5 @@
 # Creator Army engineering interview
 
-## Timebox
-
-Spend **no more than two hours** on this exercise. Stop when the time is up, even if you have not finished everything.
-
 ## The task
 
 You are completing a small content-review workflow for a Creator Army campaign manager.
